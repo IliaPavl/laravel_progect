@@ -98,7 +98,7 @@
             </div>
             <div class="ml-3">
               <div class="text-base font-medium leading-none text-white">
-                {{ user.login }}
+                {{ user.name }}
               </div>
             </div>
           </div>
