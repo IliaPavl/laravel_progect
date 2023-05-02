@@ -88,7 +88,6 @@
 <style scoped></style>
 
 <script setup>
-name: "Registration";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 const user = {
