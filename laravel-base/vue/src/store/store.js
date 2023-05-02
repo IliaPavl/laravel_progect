@@ -22,6 +22,18 @@ const store = createStore({
                 alert(error.response.data.message);
             }
         },
+        async login({ commit }, user) {
+            try {
+                const response = await axiosClient.post('/login', user, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                commit('setUser', response);
+            } catch (error) {
+                alert(error.response.data.message);
+            }
+        },
     },
     mutations: {
         logout: (state) => {
