@@ -14,6 +14,17 @@
 </template>
 
 <script setup>
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+const store = useStore();
+const router = useRouter();
+const user = store.state.user;
+
+if (user.name === null) {
+  router.push({
+    name: "Login",
+  });
+}
 const props = defineProps({
   title: String,
 });
