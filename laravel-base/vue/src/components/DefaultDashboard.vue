@@ -131,22 +131,27 @@ import {
 import { Bars3Icon, XMarkIcon, UserIcon } from "@heroicons/vue/24/outline";
 import { useStore } from "vuex";
 import { computed } from "vue";
-import {useRouter} from 'vue-router'
+import { useRouter } from "vue-router";
 
 const navigation = [
   { name: "Map", to: { name: "Map" } },
   { name: "My photos", to: { name: "Photos" } },
 ];
 const router = useRouter();
-const userNavigation = [
-  { name: "Sign out", href: "#" },
-];
+const userNavigation = [{ name: "Sign out", href: "#" }];
 const store = useStore();
 const user = store.state.user;
-function logout(params) {
-  store.commit('logout')
+
+if (user.name === null) {
   router.push({
-    name: 'Login'
-  })
+    name: "Login",
+  });
+}
+
+function logout(params) {
+  store.commit("logout");
+  router.push({
+    name: "Login",
+  });
 }
 </script>
