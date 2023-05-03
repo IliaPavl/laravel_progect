@@ -83,9 +83,16 @@ const router = useRouter();
 
 function login(params) {
   params.preventDefault();
-  store.dispatch("login", user).then((res) => {
-    router.push({ name: "Map" });
-  });
+  store
+    .dispatch("login", user)
+    .then((res) => {
+      router.push({ name: "Map" });
+    })
+    .catch((error) => {
+      if (error.response.data.errors.name !== undefined)
+        alert(error.response.data.errors.name);
+      else alert(error.response.data.errors);
+    });
 }
 </script>
 
