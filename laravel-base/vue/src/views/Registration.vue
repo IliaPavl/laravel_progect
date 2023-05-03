@@ -100,9 +100,18 @@ const router = useRouter();
 
 function registration(params) {
   params.preventDefault();
-  store.dispatch("registartion", user).then((res) => {
-    router.push({ name: "Map" });
-  });
+  store
+    .dispatch("registartion", user)
+    .then((res) => {
+      router.push({ name: "Map" });
+    })
+    .catch((error) => {
+      console.log(error.response.data.errors);
+      if (error.response.data.message !== undefined) alert(error.response.data.message);
+      else {
+        alert(error.response.data.errors.name + error.response.data.errors.password);
+      }
+    });
 }
 </script>
 
