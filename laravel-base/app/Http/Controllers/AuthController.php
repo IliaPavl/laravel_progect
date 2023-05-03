@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function registration(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:users,name',
             'password' => [
                 'required',
                 'confirmed',
@@ -52,6 +52,14 @@ class AuthController extends Controller
         return response([
             'user' => $user,
             'token' => $token
+        ], 200);
+    }
+    public function logout(Request $request)
+    {
+        $user = Auth::user();
+        $user->currentAccessToken()->delete();
+        return response([
+            'success' => true
         ], 200);
     }
 }
