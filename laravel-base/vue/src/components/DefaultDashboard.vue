@@ -25,12 +25,18 @@
           <div class="hidden md:block">
             <div class="ml-4 flex items-center md:ml-6">
               <!-- Profile dropdown -->
+              <div class="mr-3">
+                <div class="text-base font-medium leading-none text-white">
+                  {{ user.name }}
+                </div>
+              </div>
               <Menu as="div" class="relative ml-3">
                 <div>
                   <MenuButton
                     class="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span class="sr-only">Open user menu</span>
+
                     <UserIcon
                       style="color: white"
                       class="block h-6 w-6"
@@ -149,9 +155,10 @@ if (user.name === null) {
 }
 
 function logout(params) {
-  store.commit("logout");
-  router.push({
-    name: "Login",
+  store.dispatch("logout").then(() => {
+    router.push({
+      name: "Login",
+    });
   });
 }
 </script>
