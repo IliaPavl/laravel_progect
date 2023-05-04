@@ -14,7 +14,7 @@ to start
 
 ..\laravel-base\vue> npm run dev (to start vue progect)
 
-problems
+go to problems
 
 1) Register on sait
 2) go to http://localhost:5173/map
