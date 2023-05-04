@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -20,7 +21,10 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::post('/logout',[AuthController::class, 'logout']);
-
 });
+
+Route::get('/photos',[PhotoController::class,'index'])->name('photos.index');
+Route::post('/photos',[PhotoController::class,'store'])->name('photos.store');
+
 Route::post('/registration', [AuthController::class, 'registration']);
 Route::post('/login', [AuthController::class, 'login']);
