@@ -18,7 +18,7 @@ go to problems
 
 1) Register on sait
 2) go to http://localhost:5173/map
-3) click button "new Photo"
+3) click button "new Photo" and add image
 4) cheack console.log() on browser
 
 on code
