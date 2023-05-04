@@ -1,12 +1,63 @@
 import { createStore } from "vuex";
 import axiosClient from "../axios";
+
+const photosData = [
+    {
+        id: 1,
+        user_id: 8,
+        url: "https://i.imgur.com/JSxfI0I.jpeg",
+        lat: "15",
+        lng: "12",
+        date: "12332",
+        comment: "123"
+    },
+    {
+        id: 2,
+        user_id: 8,
+        url: "https://i.imgur.com/JSxfI0I.jpeg",
+        lat: "15",
+        lng: "12",
+        date: "12332"
+        ,
+        comment: "122gg3"
+    },
+    {
+        id: 3,
+        user_id: 8,
+        url: "https://i.imgur.com/JSxfI0I.jpeg",
+        lat: "15",
+        lng: "12",
+        date: "12332",
+        comment: "1fghjkl23"
+    },
+    {
+        id: 4,
+        user_id: 8,
+        url: "https://i.imgur.com/JSxfI0I.jpeg",
+        lat: "15",
+        lng: "12",
+        date: "12332",
+        comment: "gg345g45g3"
+    },
+    {
+        id: 5,
+        user_id: 8,
+        url: "https://i.imgur.com/JSxfI0I.jpeg",
+        lat: "15",
+        lng: "12",
+        date: "12332",
+        comment: "jjjjjj"
+    },
+]
+
 const store = createStore({
     state: {
         user: {
             name: sessionStorage.getItem('NAME'),
             userId: sessionStorage.getItem('USERID'),
             token: sessionStorage.getItem('TOKEN'),
-        }
+        },
+        photos: [...photosData],
     },
     getters: {},
     actions: {
@@ -38,6 +89,17 @@ const store = createStore({
             commit('logout');
             return response;
         },
+        async savePhoto({commit},photo){
+            const response = await axiosClient.post('/photos',photo,{
+                headers: {
+                    'Content-Type': 'multipart/form-data; charset=utf-8',
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                }
+            })
+            console.log(response);
+            return response;
+        }
     },
     mutations: {
         logout: (state) => {
